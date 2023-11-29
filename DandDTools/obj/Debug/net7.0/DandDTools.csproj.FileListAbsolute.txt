@@ -1,0 +1,15 @@
+/workspaces/DandDTools/DandDTools/bin/Debug/net7.0/DandDTools
+/workspaces/DandDTools/DandDTools/bin/Debug/net7.0/DandDTools.deps.json
+/workspaces/DandDTools/DandDTools/bin/Debug/net7.0/DandDTools.runtimeconfig.json
+/workspaces/DandDTools/DandDTools/bin/Debug/net7.0/DandDTools.dll
+/workspaces/DandDTools/DandDTools/bin/Debug/net7.0/DandDTools.pdb
+/workspaces/DandDTools/DandDTools/obj/Debug/net7.0/DandDTools.csproj.AssemblyReference.cache
+/workspaces/DandDTools/DandDTools/obj/Debug/net7.0/DandDTools.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/DandDTools/DandDTools/obj/Debug/net7.0/DandDTools.AssemblyInfoInputs.cache
+/workspaces/DandDTools/DandDTools/obj/Debug/net7.0/DandDTools.AssemblyInfo.cs
+/workspaces/DandDTools/DandDTools/obj/Debug/net7.0/DandDTools.csproj.CoreCompileInputs.cache
+/workspaces/DandDTools/DandDTools/obj/Debug/net7.0/DandDTools.dll
+/workspaces/DandDTools/DandDTools/obj/Debug/net7.0/refint/DandDTools.dll
+/workspaces/DandDTools/DandDTools/obj/Debug/net7.0/DandDTools.pdb
+/workspaces/DandDTools/DandDTools/obj/Debug/net7.0/DandDTools.genruntimeconfig.cache
+/workspaces/DandDTools/DandDTools/obj/Debug/net7.0/ref/DandDTools.dll
