@@ -1,4 +1,4 @@
-class RangedWeapon: Weapon {
+public class RangedWeapon: Weapon {
     int _normalRange, _maxRange;
     bool _ammunition, _loading;
     public int NormalRange {
@@ -25,12 +25,13 @@ class RangedWeapon: Weapon {
             int normalRange,
             int maxRange,
             bool ammunition = false,
+            bool finesse = false,
             bool loading = false,
             bool heavy = false,
             bool light = false,
             bool special = false,
             bool twoHanded = false
-        ):base(name: name, damages: damages, modifier: modifier, type: type, heavy: heavy, light: light, special: special, twoHanded: twoHanded) {
+        ):base(name: name, damages: damages, modifier: modifier, type: type, finesse: finesse, heavy: heavy, light: light, special: special, twoHanded: twoHanded) {
         NormalRange = normalRange;
         MaxRange = maxRange;
         Ammuntion = ammunition;

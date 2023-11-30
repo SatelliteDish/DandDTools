@@ -5,7 +5,7 @@ public enum WeaponType {
     Martial
 }
 
-class Weapon {
+public class Weapon {
     string _name;
     public string Name {
         get =>  _name;
@@ -16,7 +16,12 @@ class Weapon {
         get => _modifier;
         init => _modifier = value;
     }
-    bool _heavy, _light, _special, _twoHanded;
+    bool _finesse,_heavy, _light, _special, _twoHanded;
+    
+    public bool Finesse {
+        get => _finesse;
+        init => _finesse = value;
+    }
     public bool Heavy {
         get => _heavy;
         init => _heavy = value;
@@ -43,6 +48,7 @@ class Weapon {
             List<DamageData> damages,
             int modifier,
             WeaponType type,
+            bool finesse = false,
             bool heavy = false,
             bool light = false,
             bool special = false,
@@ -51,6 +57,7 @@ class Weapon {
         Name = name;
         Damages = damages;
         Modifier = modifier;
+        Finesse = finesse;
         Heavy = heavy;
         Light = light;
         Special = special;
