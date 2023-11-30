@@ -1,7 +1,7 @@
 public sealed class WeaponList {
     private static WeaponList instance;
     private static readonly object padlock = new object();
-    public readonly Random rng;
+    public readonly Random rng = new Random();
 
     private WeaponList() {}
     public static WeaponList Instance {
@@ -468,8 +468,8 @@ public sealed class WeaponList {
             heavy: true,
             twoHanded: true,
             ammunition: true,
-            normalRange: 30,
-            maxRange: 120
+            normalRange: 150,
+            maxRange: 600
         );
     }
     public RangedWeapon Net(int modifier = 0) {
