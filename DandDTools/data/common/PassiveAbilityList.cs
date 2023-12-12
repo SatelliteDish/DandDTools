@@ -1,7 +1,7 @@
 public sealed class PassiveAbilityList {
     public sealed class PassiveAbility {
-        string _name;
-        string _description;
+        string _name = "";
+        string _description = "";
         public string Name {
             get => _name;
             init => _name = value;
@@ -27,7 +27,7 @@ public sealed class PassiveAbilityList {
             description: $"Any creature that starts it's turn within {range} of this creature must succeed on a DC 14 Constitution saving throw or be poisoned until the start of it's next turn. On a success the effected creature is immune to the stench for 24 hours."
         );
     }
-    public PassiveAbility NimbleEscape(int range = 10) {
+    public PassiveAbility NimbleEscape() {
         return new PassiveAbility(
             name: "Nimble Escape",
             description: $"This creature can take the disengage or hide action as a bonus action on each of it's turns."

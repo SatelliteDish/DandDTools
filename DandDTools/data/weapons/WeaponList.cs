@@ -1,19 +1,5 @@
 public sealed class WeaponList {
-    private static WeaponList instance;
-    private static readonly object padlock = new object();
     public readonly Random rng = new Random();
-
-    private WeaponList() {}
-    public static WeaponList Instance {
-        get {
-            lock(padlock) {
-                if(instance == null) {
-                    instance = new WeaponList();
-                }
-                return instance;
-            }
-        }
-    }
     public MeleeWeapon Club(int modifier = 0) {
         return new MeleeWeapon(
             name: "Club",

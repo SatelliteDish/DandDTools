@@ -1,8 +1,7 @@
-using System.Drawing;
-
 public enum SenseType {
     Blindsight,
     Darkvision,
+    PassivePerception,
     Tremorsense,
     Truesight
 }
@@ -43,7 +42,7 @@ public enum CreatureType {
 }
 public class Creature {
     string _name;
-    string Name {
+    public string Name {
         get => _name;
         init => _name = value;
     }
@@ -134,7 +133,7 @@ public class Creature {
         StatData savingThrows,
         Dictionary<SenseType, int> senses,
         List<LanguageType> languages,
-        List<DamageType> resistances = null,
+        List<DamageType> resistances = default,
         List<DamageType> immunites = null,
         List<Conditions> conditionImmunities = null,
         List<PassiveAbilityList.PassiveAbility> passiveAbilities = null,

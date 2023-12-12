@@ -63,10 +63,12 @@ public class Weapon {
         Special = special;
         TwoHanded = twoHanded;
     }
-    public void RollDamage() {
+    public List<(DamageType type, int count)> RollDamage() {
+        List<(DamageType type, int count)> result = new List<(DamageType type, int count)>(); 
         foreach(DamageData damageData in Damages) {
             Damage damage = damageData.GetDamage();
-            Console.WriteLine($"{ damage.count } + { Modifier } points of { damage.type } damage!");
+            result.Add((type: damage.type, count: damage.count + Modifier));
         }
+        return result;
     }
 }
