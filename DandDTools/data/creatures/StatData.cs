@@ -39,4 +39,7 @@ public class StatData {
         Wisdom = wisdom;
         Charisma = charisma;
     }
+    public static int StatScoreToModifier(int stat) {
+        return (stat - 10)/2; 
+    }
 }
