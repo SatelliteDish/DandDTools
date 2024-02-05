@@ -16,6 +16,12 @@ public class Weapon {
         get => _modifier;
         init => _modifier = value;
     }
+    WeaponType _type;
+
+    public WeaponType Type {
+        get => _type;
+        init => _type = value;
+    } 
     bool _finesse,_heavy, _light, _special, _twoHanded;
     
     public bool Finesse {
@@ -57,6 +63,7 @@ public class Weapon {
         Name = name;
         Damages = damages;
         Modifier = modifier;
+        Type = type;
         Finesse = finesse;
         Heavy = heavy;
         Light = light;
