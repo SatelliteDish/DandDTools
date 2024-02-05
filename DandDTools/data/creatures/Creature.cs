@@ -51,7 +51,11 @@ public class Creature {
         get => _species;
         set => _species = value;
     }
-    int _hp, _ac, _speed;
+    int _hp, _ac, _speed, _initiative;
+    public int Initiative {
+        get => _initiative;
+        set => _initiative = value;
+    }
     public int HP {
         get => _hp;
         set => _hp = value;
@@ -118,9 +122,13 @@ public class Creature {
         init => _passiveAbilities = value;
     }
     Dictionary<Weapon,int> _attacks;
+    public readonly List<Weapon> weapons;
     public Dictionary<Weapon,int> Attacks {
         get => _attacks;
-        init => _attacks = value;
+        init {
+                _attacks = value;
+                weapons = new List<Weapon>(value.Keys);
+            }
     }
     public Creature(
         string name,
@@ -154,5 +162,9 @@ public class Creature {
         ConditionImmunites = conditionImmunities?? new List<Conditions>();
         PassiveAbilities = passiveAbilities?? new List<PassiveAbilityList.PassiveAbility>();
         Attacks = attacks?? new Dictionary<Weapon, int>();
+        Initiative = 0;
+    }
+    public void RollInitiative() {
+        Initiative = Dice.Roll(Dice.Type.D20);
     }
 }

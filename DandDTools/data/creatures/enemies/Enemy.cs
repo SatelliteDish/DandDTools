@@ -4,7 +4,8 @@ public class Enemy: Creature {
         get => _challenge;
         init => _challenge = value;
     }
-    int _attackEnergy;
+    int _attackEnergy = 0;
+    int maxAttackEnergy = 0;
 
     public int AttackEnergy {
         get => _attackEnergy;
@@ -47,18 +48,37 @@ public class Enemy: Creature {
         attacks: attacks
         ) {
         _challenge = challenge;
-        _attackEnergy = attackEnergy;
+        maxAttackEnergy = attackEnergy;
+        AttackEnergy = maxAttackEnergy;
     }
-    public void Attack(Weapon weapon) {
+    public void Attack(int index) {
+        Weapon weapon = weapons[index];
         if(!Attacks.ContainsKey(weapon)) throw new ArgumentException($"{Name} cannot use weapon {weapon}, {Name} does not have that weapon!");
         if(AttackEnergy < Attacks[weapon]) {
             Console.WriteLine("Cannot attack, out of energy!");
             return;
         }
+        AttackEnergy -= Attacks[weapon];
         List<(DamageType type, int count)> damage = weapon.RollDamage();
         foreach((DamageType type, int count) in damage) {
             Console.WriteLine($"Deals {count} {type} damage!");
         }
     }
 
+    public void Attack(string name) {
+        if(weapons.Count < 1) throw new InvalidOperationException($"{Name} cannot attack!");
+        Weapon weapon = null;
+        foreach(Weapon wpn in weapons) {
+            if(wpn.Name == name) {
+                weapon = wpn;
+                break;
+            }
+        }
+        if(weapon == null) throw new ArgumentException($"{Name} does not have {name}");
+        AttackEnergy -= Attacks[weapon];
+        List<(DamageType type, int count)> damage = weapon.RollDamage();
+        foreach((DamageType type, int count) in damage) {
+            Console.WriteLine($"Deals {count} {type} damage!");
+        }
+    }
 }
