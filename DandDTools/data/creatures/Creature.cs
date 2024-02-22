@@ -40,89 +40,28 @@ public enum CreatureType {
     Plant,
     Undead
 }
-public class Creature {
-    string _name;
-    public string Name {
-        get => _name;
-        init => _name = value;
-    }
-    string _species;
-    public string Species {
-        get => _species;
-        set => _species = value;
-    }
-    int _hp, _ac, _speed, _initiative;
-    public int Initiative {
-        get => _initiative;
-        set => _initiative = value;
-    }
-    public int HP {
-        get => _hp;
-        set => _hp = value;
-    }
+public abstract class Creature: IHasInitiative {
+    public string Name { get; init; }
+    public string Species { get; set; }
+    public int Initiative { get; set; }
+    public int HP { get; set; }
     public bool IsAlive {
-        get => _hp > 0;
+        get => HP > 0;
     }
-    public int AC {
-        get => _ac;
-        set => _ac = value;
-    }
-    public int Speed {
-        get => _speed;
-        set => _speed = value;
-    }
-    CreatureSize _size;
-    public CreatureSize Size {
-        get => _size;
-        set => _size = value;
-    }
-    CreatureType _type;
-    public CreatureType Type {
-        get => _type;
-        init => _type = value;
-    }
-    StatData _stats;
-    public StatData Stats {
-        get => _stats;
-        init => _stats = value;
-    }
-    StatData _savingThrows;
-    public StatData SavingThrows {
-        get => _savingThrows;
-        init => _savingThrows = value;
-    }
-    List<DamageType> _resistances;
-    public List<DamageType> Resistances {
-        get => _resistances;
-        init => _resistances = value;
-    }
-    List<DamageType> _immunitites;
-    public List<DamageType> Immunities {
-        get => _immunitites;
-        init => _immunitites = value;
-    }
-    List<Conditions> _conditionImmunities;
-    public List<Conditions> ConditionImmunites {
-        get => _conditionImmunities;
-        init => _conditionImmunities = value;
-    }
-    Dictionary<SenseType,int> _senses;
-    public Dictionary<SenseType, int> Senses {
-        get => _senses;
-        init => _senses = value;
-    }
-    List<LanguageType> _languages;
-    public List<LanguageType> Languages {
-        get => _languages;
-        init => _languages = value;
-    }
-    List<PassiveAbilityList.PassiveAbility> _passiveAbilities;
-    public List<PassiveAbilityList.PassiveAbility> PassiveAbilities {
-        get => _passiveAbilities;
-        init => _passiveAbilities = value;
-    }
-    Dictionary<Weapon,int> _attacks;
+    public int AC { get; set; }
+    public int Speed { get; set; }
+    public CreatureSize Size { get; set; }
+    public CreatureType Type { get; init; }
+    public StatData Stats { get; init; }
+    public StatData SavingThrows { get; init; }
+    public List<DamageType> Resistances { get; init; }
+    public List<DamageType> Immunities { get; init; }
+    public List<Conditions> ConditionImmunites { get; init; }
+    public Dictionary<SenseType, int> Senses { get; init; }
+    public List<LanguageType> Languages { get; init; }
+    public List<PassiveAbilityList.PassiveAbility> PassiveAbilities { get; init; }
     public readonly List<Weapon> weapons;
+    Dictionary<Weapon,int> _attacks;
     public Dictionary<Weapon,int> Attacks {
         get => _attacks;
         init {

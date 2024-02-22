@@ -11,6 +11,12 @@ public class Dice {
     public static int Roll(Type dice) {
         int result = dice switch {
             Type.D4 => Dice.RollD4(),
+            Type.D6 => Dice.RollD6(),
+            Type.D8 => Dice.RollD8(),
+            Type.D10 => Dice.RollD10(),
+            Type.D12 => Dice.RollD12(),
+            Type.D20 => Dice.RollD20(),
+            Type.D100 => Dice.RollD100()
         };
         return result;
     }
@@ -30,7 +36,7 @@ public class Dice {
         Random rng = new Random();
         return rng.Next(1,11);
     }
-    public static int Roll12() {
+    public static int RollD12() {
         Random rng = new Random();
         return rng.Next(1,13);
     }
