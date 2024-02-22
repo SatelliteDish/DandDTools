@@ -1,17 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 public class Enemy: Creature {
-    float _challenge;
-    public float Challenge {
-        get => _challenge;
-        init => _challenge = value;
-    }
-    int _attackEnergy = 0;
+    public required float Challenge { get; init; }
     int maxAttackEnergy = 0;
 
-    public int AttackEnergy {
-        get => _attackEnergy;
-        set => _attackEnergy = value;
-    }
+    public int AttackEnergy { get; set; }
 
+    [SetsRequiredMembers]
     public Enemy(
         string name,
         int hp,
@@ -47,9 +41,9 @@ public class Enemy: Creature {
         passiveAbilities: passiveAbilities,
         attacks: attacks
         ) {
-        _challenge = challenge;
+        Challenge = challenge;
         maxAttackEnergy = attackEnergy;
-        AttackEnergy = maxAttackEnergy;
+        AttackEnergy = attackEnergy;
     }
     public void Attack(int index) {
         Weapon weapon = weapons[index];
