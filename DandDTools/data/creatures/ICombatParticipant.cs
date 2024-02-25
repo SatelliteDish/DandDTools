@@ -1,5 +1,4 @@
-public interface ICombatParticipant {
-    public string Name { get; init; }
+public interface ICombatParticipant: IHasName {
     public int Initiative { get; set; }
     public void RollInitiative();
     public delegate void Turn();

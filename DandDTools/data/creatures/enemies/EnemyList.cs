@@ -8,7 +8,7 @@ public class EnemyList {
         Enemy gob =  new Enemy(
             name: name,
             species: "Goblin",
-            hp: rng.Next(2,13),
+            maxHP: rng.Next(2,13),
             ac: 15,
             speed: 30,
             size: CreatureSize.Small,
@@ -31,6 +31,7 @@ public class EnemyList {
             ),
             challenge: .25f,
             senses: new Dictionary<SenseType, int> {{SenseType.Darkvision, 60},{SenseType.PassivePerception, 9}},
+            proficiency: 2,
             languages: new List<LanguageType>{LanguageType.Common,LanguageType.Goblin},
             passiveAbilities: new List<PassiveAbilityList.PassiveAbility>{passiveAbilities.NimbleEscape()},
             attacks: new List<Weapon> {
@@ -39,19 +40,35 @@ public class EnemyList {
             }
         );
         gob.TakeTurn = delegate () {
+                if(gob.Targets.Count == 0 | gob.Attacks.Count == 0) {
+                    Console.WriteLine("Cannot Attack!");
+                    return;
+                }
                 Console.WriteLine("Choose your attack:");
                 for(int i = 0; i < gob.Attacks.Count; i++) {
                     Console.WriteLine($"{i + 1}: {gob.Attacks[i].Name}");
                 }
-                int choice;
+                int attack;
                 while(true) {
                     try {
-                        choice = Convert.ToInt32(Console.ReadLine()) - 1;
+                        attack = Convert.ToInt32(Console.ReadLine()) - 1;
                     } catch { continue; }
-                    if(choice < 0 | choice > gob.Attacks.Count - 1) continue;
+                    if(attack < 0 | attack > gob.Attacks.Count - 1) continue;
                     break;
                 }
-                gob.Attack(choice);
+                Console.WriteLine("Choose your target:");
+                for(int i = 0; i < gob.Targets.Count; i++) {
+                    Console.WriteLine($"{i + 1}: {gob.Targets[i].Name}");
+                }
+                int target;
+                while(true) {
+                    try {
+                        target = Convert.ToInt32(Console.ReadLine()) - 1;
+                    } catch { continue; }
+                    if(target < 0 | target > gob.Targets.Count - 1) continue;
+                    break;
+                }
+                gob.Attack(attack, gob.Targets[target]);
         };
         return gob;
     }
