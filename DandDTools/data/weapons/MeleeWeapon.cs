@@ -32,21 +32,13 @@ public class MeleeWeapon: Weapon {
         }
         set {
             if(!Versatile) throw new InvalidOperationException("Tried to change current verstility on a non veratile weapon!");
+            _currentlyVersatile = value;
         }
     }
-    bool _reach, _thrown, _versatile,_currentlyVersatile;
-    public bool Reach {
-        get => _reach;
-        init => _reach = value;
-    }
-    public bool Thrown {
-        get => _thrown;
-        init => _thrown = value;
-    }
-    public bool Versatile {
-        get => _versatile;
-        init => _versatile = value;
-    }
+    bool _currentlyVersatile = false;
+    public bool Reach { get; init; }
+    public bool Thrown { get; init; }
+    public bool Versatile { get; init; }
     public MeleeWeapon(
         string name,
         List<DamageData> damages,
