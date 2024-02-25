@@ -1,38 +1,39 @@
 using System.ComponentModel;
 
 public class Encounter {
-    List<IHasInitiative> _particpants;
-    public List<IHasInitiative> Participants {
-        get => _particpants;
-        set => _particpants = value;
-    }
+    public List<ICombatParticipant> Participants { get; set; }
 
-    public Encounter(List<IHasInitiative> participants) {
+    public Encounter(List<ICombatParticipant> participants) {
         Participants = participants;
     }
     public void Start() {
-        foreach(IHasInitiative participant in Participants) {
+        foreach(ICombatParticipant participant in Participants) {
             participant.RollInitiative();
         }
+        SortParticipantsByInitiative();
         bool inProgress = true;
         while(inProgress) {
-            foreach(IHasInitiative participant in Participants) {
-                Console.WriteLine(participant.Initiative);
+            foreach(ICombatParticipant participant in Participants) {
+                Console.WriteLine($"{participant.Name} got {participant.Initiative}");
+                participant.TakeTurn();
+                Console.WriteLine("-------------------------------");
             }
             inProgress = false;
         }
 
     }
-    /*//Bubble Sort
+    //Bubble Sort
     public void SortParticipantsByInitiative() {
         for(int i = 0; i < Participants.Count - 1; i++) {
-            for(int j = 0; j < Participants.Count - i - 1; j++) {
-                IHasInitiative current = Participants[i];
-                IHasInitiative next = Participants[i+1]?? current;
-                if() {
-                    
+            for(int j = 0; j < Participants.Count - 1; j++) {
+                ICombatParticipant current = Participants[j];
+                ICombatParticipant next = Participants[j+1];
+                if(current.Initiative > next.Initiative) {
+                    ICombatParticipant temp = current;
+                    Participants[j] = next;
+                    Participants[j + 1] = temp;
                 }
             }
         }
-    }*/
+    }
 } 
