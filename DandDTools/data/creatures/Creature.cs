@@ -1,3 +1,5 @@
+using System.Collections;
+
 public enum SenseType {
     Blindsight,
     Darkvision,
@@ -40,7 +42,7 @@ public enum CreatureType {
     Plant,
     Undead
 }
-public abstract class Creature: IHasInitiative {
+public abstract class Creature: ICombatParticipant {
     public string Name { get; init; }
     public string Species { get; set; }
     public int Initiative { get; set; }
@@ -60,17 +62,13 @@ public abstract class Creature: IHasInitiative {
     public Dictionary<SenseType, int> Senses { get; init; }
     public List<LanguageType> Languages { get; init; }
     public List<PassiveAbilityList.PassiveAbility> PassiveAbilities { get; init; }
-    public readonly List<Weapon> weapons;
-    Dictionary<Weapon,int> _attacks;
-    public Dictionary<Weapon,int> Attacks {
-        get => _attacks;
-        init {
-                _attacks = value;
-                weapons = new List<Weapon>(value.Keys);
-            }
-    }
+    public delegate void Turn();
+    public ICombatParticipant.Turn TakeTurn { get; set; }
+    public List<Weapon> Attacks { get; set; }
+
     public Creature(
         string name,
+        string species,
         int hp,
         int ac,
         int speed,
@@ -80,13 +78,15 @@ public abstract class Creature: IHasInitiative {
         StatData savingThrows,
         Dictionary<SenseType, int> senses,
         List<LanguageType> languages,
-        List<DamageType> resistances = default,
-        List<DamageType> immunites = null,
-        List<Conditions> conditionImmunities = null,
-        List<PassiveAbilityList.PassiveAbility> passiveAbilities = null,
-        Dictionary<Weapon,int> attacks = null
+        List<DamageType>? resistances = null,
+        List<DamageType>? immunites = null,
+        List<Conditions>? conditionImmunities = null,
+        List<PassiveAbilityList.PassiveAbility>? passiveAbilities = null,
+        List<Weapon>? attacks = null,
+        ICombatParticipant.Turn? turn = null
     ) {
         Name = name;
+        Species = species;
         HP = hp;
         AC = ac;
         Speed = speed;
@@ -100,8 +100,9 @@ public abstract class Creature: IHasInitiative {
         Immunities = immunites?? new List<DamageType>();
         ConditionImmunites = conditionImmunities?? new List<Conditions>();
         PassiveAbilities = passiveAbilities?? new List<PassiveAbilityList.PassiveAbility>();
-        Attacks = attacks?? new Dictionary<Weapon, int>();
+        Attacks = attacks?? new List<Weapon>();
         Initiative = 0;
+        TakeTurn = turn?? delegate() { Console.WriteLine("Not Implimented!"); };
     }
     public void RollInitiative() {
         Initiative = Dice.Roll(Dice.Type.D20);
