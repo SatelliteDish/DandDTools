@@ -18,7 +18,7 @@ public class MeleeWeapon: Weapon {
         init => _maxThrowRange = value;
     }
     DamageData? _versatileDamage;
-    public DamageData VersatileDamage {
+    public DamageData? VersatileDamage {
         get {
             if(!Versatile) throw new InvalidOperationException("Tried to access veratile damage without being versatile!");
             return _versatileDamage;
