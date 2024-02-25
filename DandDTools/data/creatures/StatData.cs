@@ -1,29 +1,12 @@
+using System.Diagnostics.CodeAnalysis;
 public class StatData {
-    int _strength, _dexterity, _constitution, _intelligence, _wisdom, _charisma;
-    public int Strength {
-        get => _strength;
-        init => _strength = value;
-    }
-    public int Dexterity {
-        get => _dexterity;
-        init => _dexterity = value;
-    }
-    public int Constitution {
-        get => _constitution;
-        init => _constitution = value;
-    }
-    public int Intelligence {
-        get => _intelligence;
-        init => _intelligence = value;
-    }
-    public int Wisdom {
-        get => _wisdom;
-        init => _wisdom = value;
-    }
-    public int Charisma {
-        get => _charisma;
-        init => _charisma = value;
-    }
+    public required int Strength { get; set; }
+    public required int Dexterity { get; set; }
+    public required int Constitution { get; set; }
+    public required int Intelligence { get; set; }
+    public required int Wisdom { get; set; }
+    public required int Charisma { get; set; }
+    [SetsRequiredMembers]
     public StatData(
         int strength = 0,
         int dexterity = 0,
