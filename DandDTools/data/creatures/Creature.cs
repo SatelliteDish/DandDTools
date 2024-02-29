@@ -50,8 +50,9 @@ public abstract class Creature: ICombatParticipant, IDamageable {
         get => _hp;
         set {
             _hp = value;
-            Console.WriteLine($"{Name}'s hp is now {_hp}.");
-            if(_hp < 1) Console.WriteLine($"{Name} has died!");
+            if(_hp < 1) {
+                hasDied(this);    
+            };
         }
     }
     int _hp = 0;
@@ -66,12 +67,14 @@ public abstract class Creature: ICombatParticipant, IDamageable {
     public StatData SavingThrows { get; init; }
     public List<DamageType> Resistances { get; init; }
     public List<DamageType> Immunities { get; init; }
-    public List<Conditions> ConditionImmunites { get; init; }
+    public List<Conditions> ConditionImmunities { get; init; }
     public Dictionary<SenseType, int> Senses { get; init; }
     public List<LanguageType> Languages { get; init; }
     public List<PassiveAbilityList.PassiveAbility> PassiveAbilities { get; init; }
     public delegate void Turn();
     public ICombatParticipant.Turn TakeTurn { get; set; }
+    public delegate void HasDiedHandler(Creature creature);
+    public event HasDiedHandler hasDied;
     public List<Weapon> Attacks { get; set; }
     public List<IDamageable> Targets { get; set; }
     public int ProficiencyBonus { get; set; }
@@ -109,18 +112,29 @@ public abstract class Creature: ICombatParticipant, IDamageable {
         Languages = languages;
         Resistances = resistances?? new List<DamageType>();
         Immunities = immunites?? new List<DamageType>();
-        ConditionImmunites = conditionImmunities?? new List<Conditions>();
+        ConditionImmunities = conditionImmunities?? new List<Conditions>();
         PassiveAbilities = passiveAbilities?? new List<PassiveAbilityList.PassiveAbility>();
         Targets = targets?? new List<IDamageable>();
         Attacks = attacks?? new List<Weapon>();
         Initiative = 0;
         ProficiencyBonus = proficiency;
         TakeTurn = turn?? delegate() { Console.WriteLine("Not Implimented!"); };
+        foreach(PassiveAbilityList.PassiveAbility ability in PassiveAbilities) {
+            if(ability.Name == "Brute") {
+                foreach(Weapon wpn in Attacks) {
+                    if(wpn is MeleeWeapon) {
+                        MeleeWeapon? melee = wpn as MeleeWeapon;
+                        melee.UsedByBrute = true;
+                    }
+                }
+            }
+        }
     }
     public virtual void RollInitiative() {
-        Initiative = Dice.Roll(Dice.Type.D20);
+        Console.WriteLine($"RollInitiative on {GetType()} not implimented!");
     }
-        public void Attack(int index, IDamageable target) {
+
+    public void Attack(int index, IDamageable target) {
         Weapon weapon = Attacks[index];
         if(!Attacks.Contains(weapon)) throw new ArgumentException($"{Name} cannot use weapon {weapon}, {Name} does not have that weapon!");
         Attack(weapon, target);
