@@ -33,4 +33,16 @@ public sealed class PassiveAbilityList {
             description: $"This creature can take the disengage or hide action as a bonus action on each of it's turns."
         );
     }
+    public PassiveAbility Brute(string species) {
+        return new PassiveAbility (
+            name: "Brute",
+            description: $"A melee weapon deals one extra die of it's damage when the ${species} hits with it."
+        );
+    }
+    public PassiveAbility SupriseAttack(string species) {
+        return new PassiveAbility(
+            name: "Surpise Attack",
+            description: $"If the {species} surprises a creature and hits it with an attack during the first round of combat, the target takes an extra 2d6 damage from the attack."
+        );
+    }
 }
