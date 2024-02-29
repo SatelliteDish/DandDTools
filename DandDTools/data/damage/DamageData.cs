@@ -4,17 +4,16 @@ public enum DamageType {
         Acid, Bludgeoning, Cold, Fire, Force, Lightning, Necrotic, Piercing, Poison, Psychic, Radiant, Slashing, Thunder
     }
 public class DamageData {
-    int min, max;
+    Dice.Type dice;
     Random rng;
     DamageType type;
-    public DamageData(int _min, int _max, DamageType _type, Random _rng) {
-        min = _min;
-        max = _max;
+    public DamageData(Dice.Type _dice, DamageType _type, Random _rng) {
+        dice = _dice;
         rng = _rng;
         type = _type;
     }
     public Damage GetDamage() {
-        return new Damage(rng.Next(min, max+1),type);
+        return new Damage(Dice.Roll(dice),type);
     }
 }
 public record Damage(int count, DamageType type);
