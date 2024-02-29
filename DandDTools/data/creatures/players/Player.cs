@@ -1,6 +1,8 @@
 using System.Data.Common;
 
 public class Player: Creature {
+    
+    public List<PlayerClass> Classes { get; init; }
     public string Race { get; init; }
     public Player(
         string name,
@@ -16,6 +18,7 @@ public class Player: Creature {
         StatData savingThrows,
         Dictionary<SenseType, int> senses,
         List<LanguageType> languages,
+        List<PlayerClass> classes,
         List<DamageType>? resistances = null,
         List<DamageType>? immunites = null,
         List<Conditions>? conditionImmunities = null,
