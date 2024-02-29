@@ -19,7 +19,7 @@ public class RangedWeapon: Weapon {
     }
     public RangedWeapon(
             string name,
-            List<DamageData> damages,
+            List<(int,DamageData)> damages,
             int modifier,
             WeaponType type,
             int normalRange,

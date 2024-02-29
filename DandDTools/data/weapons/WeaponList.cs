@@ -3,8 +3,8 @@ public sealed class WeaponList {
     public MeleeWeapon Club(int modifier = 0) {
         return new MeleeWeapon(
             name: "Club",
-            damages: new List<DamageData> {
-                new DamageData(1, 4, DamageType.Bludgeoning, rng)
+            damages: new List<(int,DamageData)> {
+                (1,new DamageData(Dice.Type.D4, DamageType.Bludgeoning, rng))
             },
             modifier: modifier,
             type: WeaponType.Simple,
@@ -14,8 +14,8 @@ public sealed class WeaponList {
     public MeleeWeapon Dagger(int modifier = 0) {
         return new MeleeWeapon(
             name: "Dagger",
-            damages: new List<DamageData> {
-                new DamageData(1, 4, DamageType.Piercing, rng)
+            damages: new List<(int,DamageData)> {
+                (1,new DamageData(Dice.Type.D4, DamageType.Piercing, rng))
             },
             modifier: modifier,
             type: WeaponType.Simple,
@@ -29,8 +29,8 @@ public sealed class WeaponList {
     public MeleeWeapon Greatclub(int modifier = 0) {
         return new MeleeWeapon(
             name: "Greatclub",
-            damages: new List<DamageData> {
-                new DamageData(1, 8, DamageType.Bludgeoning, rng)
+            damages: new List<(int,DamageData)> {
+                (1,new DamageData(Dice.Type.D8, DamageType.Bludgeoning, rng))
             },
             modifier: modifier,
             type: WeaponType.Simple,
@@ -40,8 +40,8 @@ public sealed class WeaponList {
     public MeleeWeapon Handaxe(int modifier = 0) {
         return new MeleeWeapon(
             name: "Handaxe",
-            damages: new List<DamageData> {
-                new DamageData(1, 6, DamageType.Bludgeoning, rng)
+            damages: new List<(int,DamageData)> {
+                (1,new DamageData(Dice.Type.D6, DamageType.Bludgeoning, rng))
             },
             modifier: modifier,
             type: WeaponType.Simple,
@@ -54,8 +54,8 @@ public sealed class WeaponList {
     public MeleeWeapon Javelin(int modifier = 0) {
         return new MeleeWeapon(
             name: "Javelin",
-            damages: new List<DamageData> {
-                new DamageData(1, 6, DamageType.Piercing, rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D6, DamageType.Piercing, rng))
             },
             modifier: modifier,
             type: WeaponType.Simple,
@@ -67,8 +67,8 @@ public sealed class WeaponList {
     public MeleeWeapon LightHammer(int modifier = 0) {
         return new MeleeWeapon(
             name: "Light Hammer",
-            damages: new List<DamageData> {
-                new DamageData(1, 4, DamageType.Bludgeoning, rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D4, DamageType.Bludgeoning, rng))
             },
             modifier: modifier,
             type: WeaponType.Simple,
@@ -81,8 +81,8 @@ public sealed class WeaponList {
     public MeleeWeapon Mace(int modifier = 0) {
         return new MeleeWeapon(
             name: "Mace",
-            damages: new List<DamageData> {
-                new DamageData(1, 6, DamageType.Bludgeoning, rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D6, DamageType.Bludgeoning, rng))
             },
             modifier: modifier,
             type: WeaponType.Simple
@@ -91,20 +91,20 @@ public sealed class WeaponList {
     public MeleeWeapon Quarterstaff(int modifier = 0) {
         return new MeleeWeapon(
             name: "Quarterstaff",
-            damages: new List<DamageData> {
-                new DamageData(1, 6, DamageType.Bludgeoning, rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D6, DamageType.Bludgeoning, rng))
             },
             modifier: modifier,
             type: WeaponType.Simple,
             versatile: true,
-            versatileDamage: new DamageData(_min: 1, _max: 8, _type: DamageType.Bludgeoning, _rng: rng)
+            versatileDamage: new DamageData(Dice.Type.D8, _type: DamageType.Bludgeoning, _rng: rng)
         );
     }
     public MeleeWeapon Sickle(int modifier = 0) {
         return new MeleeWeapon(
             name: "Sickle",
-            damages: new List<DamageData> {
-                new DamageData(1, 4, DamageType.Slashing, rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D4, DamageType.Slashing, rng))
             },
             modifier: modifier,
             type: WeaponType.Simple,
@@ -114,8 +114,8 @@ public sealed class WeaponList {
     public MeleeWeapon Spear(int modifier = 0) {
         return new MeleeWeapon(
             name: "Spear",
-            damages: new List<DamageData> {
-                new DamageData(1, 6, DamageType.Piercing, rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D6, DamageType.Piercing, rng))
             },
             modifier: modifier,
             type: WeaponType.Simple,
@@ -123,14 +123,14 @@ public sealed class WeaponList {
             minThrowRange: 20,
             maxThrowRange: 60,
             versatile: true,
-            versatileDamage: new DamageData(_min: 1, _max: 8, DamageType.Piercing, _rng: rng)
+            versatileDamage: new DamageData(Dice.Type.D8, DamageType.Piercing, _rng: rng)
         );
     }
     public RangedWeapon LightCrossbow(int modifier = 0) {
         return new RangedWeapon(
             name: "Light Crossbow",
-            damages: new List<DamageData> {
-                new DamageData(1, 8, DamageType.Piercing, rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D8, DamageType.Piercing, rng))
             },
             modifier: modifier,
             type: WeaponType.Simple,
@@ -144,8 +144,8 @@ public sealed class WeaponList {
     public RangedWeapon Dart(int modifier = 0) {
         return new RangedWeapon(
             name: "Dart",
-            damages: new List<DamageData> {
-                new DamageData(1, 4, DamageType.Piercing, rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D4, DamageType.Piercing, rng))
             },
             modifier: modifier,
             type: WeaponType.Simple,
@@ -158,8 +158,8 @@ public sealed class WeaponList {
     public RangedWeapon Shortbow(int modifier = 0) {
         return new RangedWeapon(
             name: "Shortbow",
-            damages: new List<DamageData> {
-                new DamageData(1, 6, DamageType.Piercing, rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D6, DamageType.Piercing, rng))
             },
             modifier: modifier,
             type: WeaponType.Simple,
@@ -173,8 +173,8 @@ public sealed class WeaponList {
     public RangedWeapon Sling(int modifier = 0) {
         return new RangedWeapon(
             name: "Sling",
-            damages: new List<DamageData> {
-                new DamageData(1, 4, DamageType.Bludgeoning, rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D4, DamageType.Bludgeoning, rng))
             },
             modifier: modifier,
             type: WeaponType.Simple,
@@ -186,20 +186,20 @@ public sealed class WeaponList {
     public MeleeWeapon Battleaxe(int modifier = 0) {
         return new MeleeWeapon(
             name: "Battleaxe",
-            damages: new List<DamageData> {
-                new DamageData(1,8,DamageType.Slashing,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D8, DamageType.Slashing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
             versatile: true,
-            versatileDamage: new DamageData(1,10,DamageType.Slashing,rng)
+            versatileDamage: new DamageData(Dice.Type.D10,DamageType.Slashing,rng)
         );
     }
     public MeleeWeapon Flail(int modifier = 0) {
         return new MeleeWeapon(
             name: "Flail",
-            damages: new List<DamageData> {
-                new DamageData(1,8,DamageType.Bludgeoning,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D8, DamageType.Bludgeoning,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial
@@ -208,8 +208,8 @@ public sealed class WeaponList {
     public MeleeWeapon Glaive(int modifier = 0) {
         return new MeleeWeapon(
             name: "Glaive",
-            damages: new List<DamageData> {
-                new DamageData(1,10,DamageType.Slashing,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D10, DamageType.Slashing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -221,8 +221,8 @@ public sealed class WeaponList {
     public MeleeWeapon Greataxe(int modifier = 0) {
         return new MeleeWeapon(
             name: "Greataxe",
-            damages: new List<DamageData> {
-                new DamageData(1,12,DamageType.Slashing,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D12, DamageType.Slashing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -233,8 +233,8 @@ public sealed class WeaponList {
     public MeleeWeapon Greatsword(int modifier = 0) {
         return new MeleeWeapon(
             name: "Greatsword",
-            damages: new List<DamageData> {
-                new DamageData(2,12,DamageType.Slashing,rng)
+            damages: new List<(int,DamageData)> {
+                (2, new DamageData(Dice.Type.D6, DamageType.Slashing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -245,8 +245,8 @@ public sealed class WeaponList {
     public MeleeWeapon Halberd(int modifier = 0) {
         return new MeleeWeapon(
             name: "Halberd",
-            damages: new List<DamageData> {
-                new DamageData(1,10,DamageType.Slashing,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D10, DamageType.Slashing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -258,8 +258,8 @@ public sealed class WeaponList {
     public MeleeWeapon Lance(int modifier = 0) {
         return new MeleeWeapon(
             name: "Lance",
-            damages: new List<DamageData> {
-                new DamageData(1,12,DamageType.Piercing,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D12, DamageType.Piercing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -270,20 +270,20 @@ public sealed class WeaponList {
     public MeleeWeapon Longsword(int modifier = 0) {
         return new MeleeWeapon(
             name: "Longsword",
-            damages: new List<DamageData> {
-                new DamageData(1,8,DamageType.Slashing,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D8, DamageType.Slashing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
             versatile: true,
-            versatileDamage: new DamageData(1,10,DamageType.Slashing,rng)
+            versatileDamage: new DamageData(Dice.Type.D10,DamageType.Slashing,rng)
         );
     }
     public MeleeWeapon Maul(int modifier = 0) {
         return new MeleeWeapon(
             name: "Maul",
-            damages: new List<DamageData> {
-                new DamageData(2,12,DamageType.Bludgeoning,rng)
+            damages: new List<(int,DamageData)> {
+                (2, new DamageData(Dice.Type.D6, DamageType.Bludgeoning,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -294,8 +294,8 @@ public sealed class WeaponList {
     public MeleeWeapon Morningstar(int modifier = 0) {
         return new MeleeWeapon(
             name: "Morningstar",
-            damages: new List<DamageData> {
-                new DamageData(1,8,DamageType.Piercing,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D8, DamageType.Piercing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial
@@ -304,8 +304,8 @@ public sealed class WeaponList {
     public MeleeWeapon Pike(int modifier = 0) {
         return new MeleeWeapon(
             name: "Pike",
-            damages: new List<DamageData> {
-                new DamageData(1,10,DamageType.Piercing,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D10, DamageType.Piercing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -317,8 +317,8 @@ public sealed class WeaponList {
     public MeleeWeapon Rapier(int modifier = 0) {
         return new MeleeWeapon(
             name: "Rapier",
-            damages: new List<DamageData> {
-                new DamageData(1,8,DamageType.Piercing,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D8, DamageType.Piercing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -328,8 +328,8 @@ public sealed class WeaponList {
     public MeleeWeapon Scimitar(int modifier = 0) {
         return new MeleeWeapon(
             name: "Scimitar",
-            damages: new List<DamageData> {
-                new DamageData(1,6,DamageType.Slashing,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D6, DamageType.Slashing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -340,8 +340,8 @@ public sealed class WeaponList {
     public MeleeWeapon Shortsword(int modifier = 0) {
         return new MeleeWeapon(
             name: "Shortsword",
-            damages: new List<DamageData> {
-                new DamageData(1,6,DamageType.Piercing,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D6, DamageType.Piercing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -352,8 +352,8 @@ public sealed class WeaponList {
     public MeleeWeapon Trident(int modifier = 0) {
         return new MeleeWeapon(
             name: "Trident",
-            damages: new List<DamageData> {
-                new DamageData(1,6,DamageType.Piercing,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D6, DamageType.Piercing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -361,14 +361,14 @@ public sealed class WeaponList {
             minThrowRange: 20,
             maxThrowRange: 60,
             versatile: true,
-            versatileDamage: new DamageData(1,8,DamageType.Piercing,rng)
+            versatileDamage: new DamageData(Dice.Type.D8,DamageType.Piercing,rng)
         );
     }
     public MeleeWeapon WarPick(int modifier = 0) {
         return new MeleeWeapon(
             name: "War Pick",
-            damages: new List<DamageData> {
-                new DamageData(1,8,DamageType.Piercing,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D8, DamageType.Piercing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial
@@ -377,20 +377,20 @@ public sealed class WeaponList {
     public MeleeWeapon Warhammer(int modifier = 0) {
         return new MeleeWeapon(
             name: "Morningstar",
-            damages: new List<DamageData> {
-                new DamageData(1,8,DamageType.Bludgeoning,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D8, DamageType.Bludgeoning,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
             versatile: true,
-            versatileDamage: new DamageData(1,10,DamageType.Bludgeoning, rng)
+            versatileDamage: new DamageData(Dice.Type.D10,DamageType.Bludgeoning, rng)
         );
     }
     public MeleeWeapon Whip(int modifier = 0) {
         return new MeleeWeapon(
             name: "Whip",
-            damages: new List<DamageData> {
-                new DamageData(1,4,DamageType.Slashing,rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D4, DamageType.Slashing,rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -401,8 +401,8 @@ public sealed class WeaponList {
     public RangedWeapon Blowgun(int modifier = 0) {
         return new RangedWeapon(
             name: "Blowgun",
-            damages: new List<DamageData> {
-                new DamageData(1, 1, DamageType.Piercing, rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D1, DamageType.Piercing, rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -415,8 +415,8 @@ public sealed class WeaponList {
     public RangedWeapon HandCrossbow(int modifier = 0) {
         return new RangedWeapon(
             name: "Hand Crossbow",
-            damages: new List<DamageData> {
-                new DamageData(1, 6, DamageType.Piercing, rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D6, DamageType.Piercing, rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -430,8 +430,8 @@ public sealed class WeaponList {
     public RangedWeapon HeavyCrossbow(int modifier = 0) {
         return new RangedWeapon(
             name: "Heavy Crossbow",
-            damages: new List<DamageData> {
-                new DamageData(1, 10, DamageType.Piercing, rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D10, DamageType.Piercing, rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -446,8 +446,8 @@ public sealed class WeaponList {
     public RangedWeapon Longbow(int modifier = 0) {
         return new RangedWeapon(
             name: "Longbow",
-            damages: new List<DamageData> {
-                new DamageData(1, 8, DamageType.Piercing, rng)
+            damages: new List<(int,DamageData)> {
+                (1, new DamageData(Dice.Type.D8, DamageType.Piercing, rng))
             },
             modifier: modifier,
             type: WeaponType.Martial,
@@ -461,9 +461,7 @@ public sealed class WeaponList {
     public RangedWeapon Net(int modifier = 0) {
         return new RangedWeapon(
             name: "Net",
-            damages: new List<DamageData> {
-                new DamageData(0, 0, DamageType.Piercing, rng)
-            },
+            damages: new List<(int,DamageData)> {},
             modifier: modifier,
             type: WeaponType.Martial,
             special: true,

@@ -12,10 +12,10 @@ public class Weapon {
     public bool Light { get; init; }
     public bool Special { get; init; }
     public bool TwoHanded { get; init; }
-    public List<DamageData> Damages { get; init; }
+    public List<(int,DamageData)> Damages { get; init; }
     public Weapon (
             string name,
-            List<DamageData> damages,
+            List<(int,DamageData)> damages,
             int modifier,
             WeaponType type,
             bool finesse = false,
@@ -34,11 +34,14 @@ public class Weapon {
         Special = special;
         TwoHanded = twoHanded;
     }
-    public List<(DamageType type, int count)> RollDamage() {
-        List<(DamageType type, int count)> result = new List<(DamageType type, int count)>(); 
-        foreach(DamageData damageData in Damages) {
-            Damage damage = damageData.GetDamage();
-            result.Add((type: damage.type, count: damage.count + Modifier));
+    public List<(DamageType, int)> RollDamage() {
+        List<(DamageType, int)> result = new List<(DamageType, int)>(); 
+        foreach((int count, DamageData damageData) in Damages) {
+            Console.WriteLine($"Rolling {count} {damageData}");
+            for(int i = 0; i < count; i++) {
+                Damage damage = damageData.GetDamage();
+                result.Add((damage.type,damage.count + Modifier));
+            }
         }
         return result;
     }
