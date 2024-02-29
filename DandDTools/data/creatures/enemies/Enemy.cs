@@ -46,4 +46,7 @@ public class Enemy: Creature {
         Challenge = challenge;
         Species = species;
     }
+    public override void RollInitiative() {
+        Initiative = Dice.Roll(Dice.Type.D20) + StatData.StatScoreToModifier(Stats.Dexterity);
+    }
 }
