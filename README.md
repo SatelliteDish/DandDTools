@@ -3,7 +3,7 @@ Currently this is a command line utility, but I would like to add a UI one day. 
 
 ## Current Features
 - Tracks all the enemies and players in an encounter
-- Calls for each creature to take their turn in proper initiative order
+- Calls for each creature to take their turn in proper initiative orderit
 - Removes dead creatures as targets
 - Rolls HP, initiative, attack rolls, and damage rolls for each enemy.
 
